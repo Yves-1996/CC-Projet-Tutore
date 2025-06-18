@@ -45,7 +45,7 @@ def make_prediction(processed_image):
 
     result = class_names[predicted_class_index]
 
-    if confidence < 0.7: 
+    if confidence < 0.9: 
         result = "Indéterminé (Faible confiance < 0.9)"
 
     return result, confidence
