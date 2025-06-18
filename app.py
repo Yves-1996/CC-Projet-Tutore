@@ -3,6 +3,11 @@ from PIL import Image
 import numpy as np
 import tensorflow as tf 
 
+st.set_page_config(
+    page_title="Détection COVID-19 par CT Scan",
+    page_icon="🦠",
+    layout="centered"
+)
 
 #Charger le Modèle
 @st.cache_resource 
@@ -45,11 +50,7 @@ def make_prediction(processed_image):
     return result, confidence
 
 # --- 4. Interface Streamlit ---
-st.set_page_config(
-    page_title="Détection COVID-19 par CT Scan",
-    page_icon="🦠",
-    layout="centered"
-)
+
 
 st.title("🦠 Détection du COVID-19 à partir d'un CT Scan Pulmonaire")
 st.markdown("""
