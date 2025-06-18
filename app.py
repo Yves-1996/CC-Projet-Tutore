@@ -22,16 +22,17 @@ def preprocess_image(image):
 
     # Redimensionner l'image 
     target_size = (64, 64) # Adapte cette taille à l'entrée du modèle
-    image = image.resize(target_size)
-    image = np.array(image)
+    pil_image = image.convert('RGB')
+    pil_image = pil_image.resize(target_size)
+    image_array = np.array(pil_image)
 
     # Normalisation des pixels
-    image = image / 255.0
+    image_array = image_array / 255.0
 
     # Ajout d'une dimension de batch 
-    image = np.expand_dims(image, axis=0)
+    image_array = np.expand_dims(image_array, axis=0)
 
-    return image
+    return image_array
 
 # Prédiction
 def make_prediction(processed_image):
