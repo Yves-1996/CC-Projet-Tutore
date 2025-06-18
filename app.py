@@ -73,7 +73,7 @@ if uploaded_file is not None:
     try:
         # Lire l'image standard (JPG, PNG)
         image = Image.open(uploaded_file).convert("L") # Convertir en niveaux de gris
-        st.image(image, caption="Image CT Scan", use_column_width=True)
+        st.image(image, caption="Image CT Scan", use_container_width=True)
         image_to_process = image
 
         st.write("Analyse en cours...")
@@ -85,10 +85,10 @@ if uploaded_file is not None:
         st.write(f"### Résultat : **{prediction_result}**")
         st.write(f"Confiance du modèle : **{confidence:.2f}**")
 
-        if "COVID" in prediction_result:
+        if "Non-COVID" in prediction_result:
+            st.info("Aucun signe de COVID-19 n'a été détecté (basé sur l'analyse de l'image")
+        elif "COVID" in prediction_result:
             st.error("Des signes potentiels de COVID-19 ont été détectés.")
-        elif "Non-COVID" in prediction_result:
-            st.info("Aucun signe de COVID-19 n'a été détecté (basé sur l'analyse de l'image).")
         else:
             st.warning("Le résultat est indéterminé. Cela peut être dû à une faible confiance du modèle ou à des caractéristiques ambiguës.")
 
